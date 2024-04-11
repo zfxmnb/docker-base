@@ -30,7 +30,7 @@ jobs:
           if [[ "$STARTUP_CMD" != $STARTUP_DEFAULT ]]; then
           STARTUP_PATH=startup.sh
           touch $STARTUP_PATH
-          echo -e "$STARTUP_CMD" | sed -e "1d" | sed -e "\$d" > $STARTUP_PATH
+          echo -e "$STARTUP_CMD" | sed -e "1d" | sed -e "\$d" | sed -e 's/\r$//' > $STARTUP_PATH
           echo -e "Image initialed"
           fi
       
