@@ -17,14 +17,21 @@ jobs:
         id: script
         run: |
           STARTUP_CMD=$(cat <<- EOF
+          <<COMMENT
           ${{ vars.STARTUP_CMD }}
+          COMMENT
           EOF
           )
-          if [[ `$STARTUP_CMD` ]]; then
-            STARTUP_PATH=startup.sh
-            touch $STARTUP_PATH
-            echo -e "$STARTUP_CMD" > $STARTUP_PATH
-            echo -e "Image initialed"
+          STARTUP_DEFAULT=$(cat <<- EOF
+          <<COMMENT
+          COMMENT
+          EOF
+          )
+          if [[ "$STARTUP_CMD" != $STARTUP_DEFAULT ]]; then
+          STARTUP_PATH=startup.sh
+          touch $STARTUP_PATH
+          echo -e "$STARTUP_CMD" | sed -e "1d" | sed -e "\$d" > $STARTUP_PATH
+          echo -e "Image initialed"
           fi
       
       - name: Set up QEMU
