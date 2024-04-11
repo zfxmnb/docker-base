@@ -1,11 +1,11 @@
-# docker-publish-base
+# docker-base
 
-- Base image: alpine/git
+- Base image: alpine/git:latest
 
 ## Git action Variables
 
 - NAME: Image name (required)
-- ALPINE_VERSION: Base image version（默认: latest）
+- IMAGE: Base image（默认: alpine/git:latest）
 - MAINTAINER: Maintainer (required)
 - PORT: Default port（default: 8080）
 - STARTUP_CMD: Startup cmd（optional）

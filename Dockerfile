@@ -1,6 +1,6 @@
 # Base image
-ARG ALPINE_VERSION=latest
-FROM alpine/git:${ALPINE_VERSION}
+ARG IMAGE=alpine/git:latest
+FROM ${IMAGE}
 # maintainer
 ARG MAINTAINER="zfxmnb <fanx1949@gmail.com>"
 LABEL maintainer=${MAINTAINER}
