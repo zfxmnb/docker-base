@@ -7,13 +7,13 @@ LABEL maintainer=${MAINTAINER}
 # volume
 VOLUME /data
 # build run
-RUN bash build.sh
+RUN build.sh
 # copy files
 COPY startup.sh /startup.sh
 # expose port/protocol
 ARG PORT=8080
 EXPOSE ${PORT}
 # entry point
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/sh"]
 # default exec
 CMD ["/startup.sh"]
