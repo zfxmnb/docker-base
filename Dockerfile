@@ -7,9 +7,10 @@ LABEL maintainer=${MAINTAINER}
 # volume
 VOLUME /data
 # build run
-RUN build.sh
+RUN "sh build.sh"
 # copy files
 COPY startup.sh /startup.sh
+COPY sopt /sopt
 # expose port/protocol
 ARG PORT=8080
 EXPOSE ${PORT}
