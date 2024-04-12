@@ -16,23 +16,34 @@ jobs:
       - name: Image initial
         id: script
         run: |
+          DEFAULT=$(cat <<- EOF
+          <<COMMENT
+          COMMENT
+          EOF
+          )
           STARTUP_CMD=$(cat <<- EOF
           <<COMMENT
           ${{ vars.STARTUP_CMD }}
           COMMENT
           EOF
           )
-          STARTUP_DEFAULT=$(cat <<- EOF
-          <<COMMENT
-          COMMENT
-          EOF
-          )
-          if [[ "$STARTUP_CMD" != $STARTUP_DEFAULT ]]; then
+          if [[ "$STARTUP_CMD" != $DEFAULT ]]; then
           STARTUP_PATH=startup.sh
           touch $STARTUP_PATH
           echo -e "$STARTUP_CMD" | sed -e "1d" | sed -e "\$d" | sed -e 's/\r$//' > $STARTUP_PATH
-          echo -e "Image initialed"
           fi
+          BUILD_CMD=$(cat <<- EOF
+          <<COMMENT
+          ${{ vars.BUILD_CMD }}
+          COMMENT
+          EOF
+          )
+          if [[ "$BUILD_CMD" != $DEFAULT ]]; then
+          BUILD_PATH=build.sh
+          touch $BUILD_PATH
+          echo -e "$BUILD_CMD" | sed -e "1d" | sed -e "\$d" | sed -e 's/\r$//' > $BUILD_PATH
+          fi
+          echo -e "Image initialed"
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3

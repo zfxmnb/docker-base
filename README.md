@@ -8,7 +8,8 @@
 - IMAGE: Base image（默认: alpine/git:latest）
 - MAINTAINER: Maintainer (required)
 - PORT: Default port（default: 8080）
-- STARTUP_CMD: Startup cmd（optional）
+- BUILD_CMD: Bash syntax commands used when building; Replace $ with \$ when using variable（optional）
+- STARTUP_CMD: Startup syntax commands used when building; Replace $ with \$ when using variable（optional）
 
 ## Git action Secrets
 
