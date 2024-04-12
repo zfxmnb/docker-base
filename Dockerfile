@@ -11,7 +11,7 @@ COPY startup.sh /startup.sh
 COPY build.sh /build.sh
 COPY sopt /sopt
 # build run
-RUN ["/build.sh"]
+RUN ["/bin/sh", "/build.sh"]
 # expose port/protocol
 ARG PORT=8080
 EXPOSE ${PORT}
